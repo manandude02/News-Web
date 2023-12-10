@@ -25,7 +25,7 @@ export class News extends Component {
   }
   
   async componentDidMount(){
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}`;
+    let url = `https://gnews.io/api/v4/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=${this.props.apiKey}&lang=en`;
     let data = await fetch(url);
     let parsedData = await data.json();
     this.setState({
@@ -75,9 +75,8 @@ export class News extends Component {
         <h2>Top Headlines</h2>
         <InfiniteScroll
           dataLength={this.state.articles.length}
-          next={this.fetchMoreData}
           hasMore={this.state.articles.length !== this.state.totalResults}
-          loader={<h4>Loading...</h4>}>
+          loader={<h4></h4>}>
             <div className="container">
         <div className="row">
             {this.state.articles.map((element)=>{
